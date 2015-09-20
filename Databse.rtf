@@ -1,0 +1,432 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green186\blue251;\red217\green11\blue0;\red85\green142\blue40;
+\red255\green39\blue18;\red102\green177\blue50;\red134\green205\blue77;\red254\green73\blue64;\red218\green119\blue254;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh13220\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc
+
+\f0\b\fs48 \cf0 MY SQL Database
+\b0\fs24 :\
+
+\b \cf2 DB Basics and Schema
+\b0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf3 Table
+\b0 \cf0 : \cf4 Table is a collection of Data stored in rows and columns. \cf0 \
+\
+
+\b \cf3 Set Of Tables:
+\b0 \cf0  \cf4 The unique ID of the table is the primary key. The 
+\b primary
+\b0  key of another table is a 
+\b foreign
+\b0  Key.\cf0 \
+\
+
+\b \cf5 My SQL Data types:
+\b0 \cf0 \
+\cf6 VARCHAR, INT, DATE, DOUBLE.\cf0 \
+\
+
+\b \cf5 Schema
+\b0 \cf0  : \cf4 Description of a table. Describes the parent and child relationship.\cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc
+
+\b \cf2 Managing Database and Tables.
+\b0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\b \cf5 DATAbase Creation:
+\b0 \cf0 \
+\cf4 Syntax: CREATE DATABASE databasename;\cf0 \
+\
+
+\b \cf5 Show DataBase:
+\b0 \cf0 \
+\cf6 syntax: SHOW DATABASES;\cf0 \
+\
+\cf5 Drop DataBase\cf0 : \cf4 deletes existing Database\
+Syntax : DROP DATABASE dbname;\
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf3 Data Types
+\b0 \cf0 : \cf6 Tables has Columns or fields. They have a type and size as the data type.\
+We define the type and the size.\cf0 \
+
+\b \cf6 VARCHAR
+\b0  =  stores characters, numbers, alphabests, characters, commas , semilcolon etc;\
+
+\b INT
+\b0  = stores signed integers. No decimal values.\
+
+\b DOUBLE
+\b0  = Stores numbers with decimal. Example DOUBLE(5,2) : Allows you to store with a max of 5 digits of which 2 can be after the decimal point . 123.45\
+
+\b DATE
+\b0  = stores date yyyy/mm/dd\
+\cf0 \
+\
+
+\b \cf5 Create Table:
+\b0 \cf0 \
+
+\b \cf7 Syntax
+\b0 :  CREATE TABLE IF NOT EXISTS broker.emp_list(\
+emp_id VARCHAR(5) NOT NULL,\
+emp_name VARCHAR(40) NULL,\
+emp_join_date DATE NULL,\
+emp_Sal DOUBLE(6,2) NULL,\
+PRIMARY KEY(emp_id)\
+);\cf0 \
+\
+
+\b \cf3 Describe Table
+\b0 : \cf6 displays all fields with attributes. Displays primary and foreign keys.\
+syntax: DESCRIBE dbname.tablename;\
+eg: DESCRIBE bookorder.emp_list;\cf0 \
+\
+\
+
+\b \cf3 Alter Table:
+\b0 \cf0 \
+\cf6 Modifies or add data/delete, create primary key etc.\
+syntax: ALTER TABLE dbname.tablename\
+		ADD COLUMN column name datatype NULL;\
+\
+Eg: ALTER TABLE bookorder.emp_list\
+	ADD COLUMN emp_age INT NULL;\cf0 \
+\
+
+\b \cf5 Delete Table:
+\b0 \cf0 \
+\cf6 Syntax:  DROP TABLE dbname.tablename\
+e.g.: 		DROP TABLE bookorderlist.emp_list;\cf0 \
+\
+\
+
+\b \cf5 Create Foreign Key:
+\b0 \cf0 \
+\cf7 CREATE TABLE IF NOT EXISTS bookorderlist.state_list(\
+	State_id VARCHAR(5) NOT NULL,\
+	State_name VARCHAR(20), NULL,\
+	country_id VARCHAR(5), NULL,\
+	PRIMARY KEY(State_id),\
+	INDEX bananas(country_id, ASC),\
+	CONTRAINT bananarule1\
+		FOREIGN KEY(country_id)\
+		REFERENCES bookorder.countylist(country_id)\
+\
+);\
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc
+
+\b \cf0 	\cf2 POPULATING DATA
+\b0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\b \cf3 Setting up Database and tables:
+\b0 \cf0 \
+\cf7 1. Create employee database\
+2. Create a tables with employee list with primary key as emp_id .\
+3. Create a table salary details with primary key as salary id and foreign key emp_id.\cf0 \
+\
+\cf6 \
+CREATE DATABASE employee;\
+CREATE TABLE IF NOT EXISTS employee.emp_list(\
+	emp_id VARCHAR(5) NOT NULL,\
+	emp_firstname VARCHAR(20) NULL.\
+	emp_lastname VARCHAR(20) NULL,\
+	emp_joinDate DATE NULL,\
+	emp_age INT NULL,\
+\
+	PRIMARY KEY(emp_id));\
+\
+CREATE DATABASE Salary;\
+CREATE TABLE IF NOT EXISTS sal_details(\
+	sal_id VARCHAR(45) NOT NULL,\
+	sal_month INT,\
+	sal_year INT,\
+	sal_ampunt DOUBLE(7,2),\
+	\
+	PRIMARY KEY(sal_id),\
+	INDEX sal(emp_id ASC),\
+	\
+	CONSTRAINT rule\
+	FOREIGN KEY(emp_id)\
+	REFERENCES employee.emp_list(emp_id));	\cf0 \
+\
+\
+
+\b \cf5 Add Data to table:\cf0 \
+
+\b0 \cf6 To add data  syntax :\
+INSERT INTO tablename(column names)\
+VALUES(column value);\
+\
+SELECT * FROM employee.emp_list   // brings all the records of the table.\
+\
+INSERT INTO employee.emp_list (\
+	emp_id,\
+	emp_firstname,\
+	emp_lastname,\
+	emp_joindate,\
+	emp_age)\
+\
+VALUES(\
+	\'91EMP01\'92,\
+	\'91john\'92\
+	\'91smith\'92,\
+	\'912009-09-08\'92,\
+	25\
+);\
+\
+Another way of inserting data with columns names and values in different order \
+\
+INSERT INTO employee.emp_list(\
+	emp_joindate,\
+	emp_lastname\
+	emp_firstname,\
+	emp_age,\
+	emp_id\
+) \
+values(\
+	\'912010-01-12\'92,\
+	\'91louise\'92,\
+	\'91philipe\'92\
+	20,\
+	\'91EMP02\'92\
+);\
+\
+\
+Another way of inserting data:\
+\
+INSERT INTO employee.emp_list \
+values(\
+\
+	\'91EMP03\'92,\
+	\'91john\'92	,\
+	\'91walsh\'92,\
+	2009-08-09,\
+	30);\
+\
+\
+Insert records to the salary detail detail which has a foreign key called emp_id, which means when you are inserting a record into the salary_details table, the emp_id value which is getting inserted has to have a corresponding value in the mp_list table. In other words, we cannot insert a record in sal_details with em_value which does not have a corresponding record in mp_list\
+\
+INSERT INTO sal_details(\
+	sal_id,\
+	sal_month,\
+	sal_year,\
+	sal_amount,\
+	empt_id)\
+\
+ values(\
+	\'91sal01\'92,\
+	\'9209\'92\
+	\'912009-09-09\'92,\
+	5000.90,\
+	\'91EMP01\'92),\
+\
+(\
+	\'91sal02\'92,\
+	\'9209\'92\
+	\'912009-09-09\'92,\
+	5000.90,\
+	\'91EMP02\'92);\
+\
+\cf0 \
+\
+
+\b \cf5 WHERE CLAUSE: 
+\b0 \cf0 \
+\cf6 To execute SQL statements conditionally, we use a where clause.\
+It returns the row where the condition is tr.ue.\
+Eg: list employees whose age is >25\
+\
+Samples of simple conditions:\
+emp_id=\'91EMP01\'92\
+emp_age>25\
+emp_id=\'91EMP3\'92\
+sal_amount>5000\
+sal_amount>=emp_age*250  // sal amount compared with emp_age*250\
+\
+complex conditions:\
+(emp_id=\'91EMP01\'92) AND (salary_amount>5000) // AND operator connects to simple conditions\
+(emo_id=\'91EMP03\'92 OR emp_id=\'91EMP02\'92) AND (salary_amount>=emp_age*250)\
+\cf0 \
+\cf8 \
+
+\b Arithmetic Operators and Expressions:\cf0 \
+
+\b0 \cf4 Some of the where clause components use:\
+Arithmetic Operarors:\
++,-,*,/, ^ are some of the operators used in expressions.  // Basic components\
+\
+Constant values or Literals: where clause uses constants values in other words called as literals. The numeric literals will come as is where as the character type and date type come in quotes.\
+\
+Expressions: Uses constant values, arithmetic operators as well as columns from tables.\
+\
+Numeric Expressions: \
+	3, 3*sal_amount, sal_amount+sal_month // 3 is a constant value, Sal_amount is a column value connected by a arithmetic operator is an expression.\
+\
+Character Expressions:\
+	\'91Robert\'92, emp_last_name\
+
+\b \cf0 \
+\cf5 Comparison Operators and Simple Condition:\cf0 \
+
+\b0 \cf6 Following Comparison Operators are used in simple conditions\
+<, <=, =, >, >=, <>  are the comparison operators used in simple conditions.\
+\
+Simple Condition:\
+Simple condition will usually have a column name on the left side and an expression on the right side with a comparison operator in between.\
+eg: emp_id=\'91EMP01\
+	Salary_amount >=8000\
+	Salary_amount<sal_month*1000 // column name on the right and column name mulitipled by a constant value on the left is a simple condition.\
+\cf3 \
+
+\b Logical Operators and Operator Precedence:\cf0 \
+\cf6 Where Clause can have simple or complex condtions . Complex conditons are simple conditions joined with logical operators.\
+
+\b0 Logical Operator:\
+AND: The result will be true if both the expressions on both sides are true.\
+OR: The result will be true even if either sides of expression in true\
+NOT: NOT will have only one expression to its right side.  Will return true if the condition to its right is true else vice versa.\
+\
+Operator Precedence:\
+Following are the precedence operators in an order\
+Brackets()\
+NOT operator\
+AND operator\
+All, ANY, BETWEEN, IN, LIKE, OR, SOME operators // These fall in same level. When more than one operator falls in same level, they are executed from left to right.\
+\cf0 \
+\
+
+\b \cf5 Update Table Data:
+\b0 \cf0 \
+\cf6 Syntax:\
+	UPDATE tablename\
+		SET column1 = data1,\
+				column2 = daye2\'85.\
+\
+	WHERE condition;\
+\
+Eg:\
+Update the employee\'92s age to 30 years for the employee whose emp_id is EMP01.\
+Before writing the query , it is good to debug the code to get the concept\
+	columns to update : emp_age=30\
+	condition:  	       emp_id=\'91EMP01\'92\
+	TableName	       employee_list\
+\
+UPDATE employee.employeelist\
+			SET emp_age=30\
+		WHERE emp_id=\'91EMP01\'92\
+\
+Eg:2 \
+Increment the employee age by 1 for all the employees in the employee_list table.\
+UPDATE employee.employee_list\
+		SET emp_id = emp_id+1;\
+\
+Eg:3\
+Increase the Salary of the employees whose employee ids are EMP01 and EMP03 by 10%\
+UPDATE employee.Sal_details\
+	SET Salary_amount = sal_amount+(sal_amount*0.1)\
+	WHERE emp_id = \'91EMP01\'92 OR emp_id=\'91EMP03\'92\
+\cf0 \
+
+\b \cf3 Delete Data from table:
+\b0 \cf0 \
+\cf6 Syntax: DELETE FROM tablename\
+	     WHERE condition;\
+\
+Eg1: Delete all the records from salary_details\
+	DELETE FROM employee.salary_details;\
+\
+Eg2: Delete the record corresponding to employee whose first name is Sam.\
+\
+	DELETE FROM employee.employee_list\
+	WHERE emp_firstname = Sam\
+\
+When deleting a record from the parent table, we should make sure there is no records for that parent table in the child table.\
+\
+\cf0 \
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc
+
+\b \cf9 RETRIEVING DATA\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf5 Simple Select\cf2 : 
+\b0 Select Statement is used to retrieve data from tables.\
+\
+Eg: Display All the category details of Category_list table of Bookorder database\
+\
+SELECT  * FROM  bookorder.category_list
+\b \
+\
+\cf5 Change Column header:\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b0 \cf2 Display columns with customised column header:\
+Eg: Display the customer First and Last Name with the column headings from the the table customer_list\
+\
+	SELECT customer_First_name AS \'91Firstname\'92, custome_last_name AS last_name\'92  // AS allows us to specify a column header for each column specified in the column header.\
+	FROM booked.customer_list\
+
+\b \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf5 Select Specific Column:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b0 \cf2 Retrieving specific column data\
+Eg: Display all the category names. The column to display is only category name from category_list table\
+\
+	SELECT category_name \
+	FROM  bookoder.category_list
+\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b0 \cf0 \
+\
+
+\b \cf5 Select Distinct Column:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b0 \cf2 Select with distinct will display 
+\b unique
+\b0  rows of the columns you want to display.\
+Eg: Display all the stateIds referred in the city_list table \
+	SELECT DISTInCT state_id\
+	FROM bookorder.city_list\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\b \cf5 Sort Data of the Select statement :\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b0 \cf2 Eg: Display Customer First and Last name sorted by customer first name\
+\
+	SELECT customer_firstname as \'91firstname\'92, customer_lastname AS \'91lastname\'92\
+	FROM broker.customer_list\
+	ORDER BY customer_firstname\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+}
